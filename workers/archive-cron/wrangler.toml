@@ -1,8 +1,11 @@
-name = "tribal-wall"
+name = "tribal-wall-archive-cron"
+main = "index.ts"
 compatibility_date = "2024-01-01"
-pages_build_output_dir = "dist"
 
 [[d1_databases]]
 binding = "DB"
 database_name = "tribal-wall-db"
 database_id = "7d51c2a4-2ad7-4a5d-b0d7-86d15a16c4bb"
+
+[triggers]
+crons = ["0 * * * *"]

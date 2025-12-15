@@ -35,12 +35,12 @@ app.get('/', async (c) => {
       .prepare('SELECT * FROM profiles WHERE is_archived = 0 AND (name LIKE ? OR about LIKE ?) ORDER BY created_at DESC')
       .bind(searchPattern, searchPattern)
       .all<Profile>()
-      .then(r => r.results)
+      .then(r => r.results || [])
   } else {
     profiles = await db
       .prepare('SELECT * FROM profiles WHERE is_archived = 0 ORDER BY created_at DESC')
       .all<Profile>()
-      .then(r => r.results)
+      .then(r => r.results || [])
   }
 
   const countResult = await db
@@ -70,12 +70,12 @@ app.get('/archive', async (c) => {
       .prepare('SELECT * FROM profiles WHERE is_archived = 1 AND (name LIKE ? OR about LIKE ?) ORDER BY created_at DESC')
       .bind(searchPattern, searchPattern)
       .all<Profile>()
-      .then(r => r.results)
+      .then(r => r.results || [])
   } else {
     profiles = await db
       .prepare('SELECT * FROM profiles WHERE is_archived = 1 ORDER BY created_at DESC')
       .all<Profile>()
-      .then(r => r.results)
+      .then(r => r.results || [])
   }
 
   return c.html(<Archive profiles={profiles} searchQuery={query} />)
@@ -88,7 +88,7 @@ app.get('/admin', async (c) => {
   const baseUrl = new URL(c.req.url).origin
 
   const profiles = authenticated
-    ? await db.prepare('SELECT * FROM profiles ORDER BY is_archived ASC, created_at DESC').all<Profile>().then(r => r.results)
+    ? await db.prepare('SELECT * FROM profiles ORDER BY is_archived ASC, created_at DESC').all<Profile>().then(r => r.results || [])
     : []
 
   return c.html(<Admin profiles={profiles} qrCodeUrl={getQRCodeUrl(baseUrl)} authenticated={authenticated} />)
@@ -207,15 +207,4 @@ app.get('/api/qrcode', async (c) => {
   })
 })
 
-// ============ Scheduled (Cron) ============
-
-export default {
-  fetch: app.fetch,
-  async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext) {
-    const now = Date.now()
-    await env.DB
-      .prepare('UPDATE profiles SET is_archived = 1 WHERE expires_at < ? AND is_archived = 0')
-      .bind(now)
-      .run()
-  },
-}
+export default app
