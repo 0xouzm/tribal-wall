@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+/* Tribal Brand Colors */
+@theme {
+  --color-tribal-green: #2D5A3D;
+  --color-tribal-green-light: #3D7A52;
+  --color-tribal-green-dark: #1D3A2D;
+  --color-tribal-yellow: #F5C842;
+  --color-tribal-yellow-light: #FFE066;
+  --color-tribal-cream: #FDF6E3;
+  --color-tribal-sand: #E8DCC4;
+  --color-tribal-dark: #1A1A1A;
+
+  --font-display: "Caveat", cursive;
+  --font-body: "DM Sans", system-ui, sans-serif;
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scribble {
+  0% { stroke-dashoffset: 1000; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 0.5s ease-in-out;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out forwards;
+}
+
+.animate-scribble {
+  stroke-dasharray: 1000;
+  animation: scribble 2s ease-out forwards;
+}
+
+/* Staggered animation delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* Tribal scribble underline */
+.tribal-underline {
+  position: relative;
+}
+
+.tribal-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 8px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10'%3E%3Cpath d='M0,5 Q25,0 50,5 T100,5' stroke='%23F5C842' stroke-width='3' fill='none'/%3E%3C/svg%3E") repeat-x;
+  background-size: 100px 10px;
+}
+
+/* Card hover effects */
+.tribal-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tribal-card:hover {
+  transform: translateY(-4px) rotate(0.5deg);
+  box-shadow: 0 20px 40px rgba(45, 90, 61, 0.15);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-tribal-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-tribal-green);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-tribal-green-dark);
+}
+
+/* Mobile touch improvements */
+@media (hover: none) {
+  .tribal-card:active {
+    transform: scale(0.98);
+  }
+}
