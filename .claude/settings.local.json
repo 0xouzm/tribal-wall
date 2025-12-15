@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(frontend-design)",
+      "WebSearch",
+      "WebFetch(domain:www.brandworks.co)"
+    ]
+  }
+}
