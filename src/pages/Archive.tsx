@@ -12,15 +12,15 @@ export const Archive: FC<ArchiveProps> = ({ profiles, searchQuery }) => {
   return (
     <Layout title="Archive - Tribal Wall">
       {/* Header */}
-      <header class="bg-tribal-dark text-white py-6 px-4">
+      <header class="bg-forest-gradient text-white py-6 px-4">
         <div class="max-w-6xl mx-auto">
-          <a href="/" class="inline-flex items-center gap-2 text-tribal-yellow hover:underline mb-4">
+          <a href="/" class="inline-flex items-center gap-2 text-amber-light hover:text-amber-gold transition-colors mb-4">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
             </svg>
             Back to Wall
           </a>
-          <h1 class="font-display text-3xl font-bold mb-2">Archive</h1>
+          <h1 class="font-display text-3xl font-semibold mb-2 tracking-tight">Archive</h1>
           <p class="text-white/60">Past members of the tribe</p>
         </div>
       </header>
@@ -28,16 +28,16 @@ export const Archive: FC<ArchiveProps> = ({ profiles, searchQuery }) => {
       <main class="max-w-6xl mx-auto px-4 py-6">
         {/* Search */}
         <form action="/archive" method="get" class="mb-6">
-          <div class="relative">
+          <div class="relative group">
             <input
               type="text"
               name="q"
               value={searchQuery}
               placeholder="Search archived profiles..."
-              class="w-full px-4 py-3 pl-12 bg-white border-2 border-tribal-sand rounded-xl focus:outline-none focus:border-tribal-green transition-colors"
+              class="w-full px-4 py-3.5 pl-12 bg-white/80 border border-forest-mist rounded-2xl focus:outline-none focus:border-forest-sage focus:bg-white focus:ring-2 focus:ring-forest-sage/20 transition-all placeholder:text-earth-stone/60"
             />
             <svg
-              class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-tribal-dark/40"
+              class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-earth-stone/50 group-focus-within:text-forest-sage transition-colors"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -53,8 +53,8 @@ export const Archive: FC<ArchiveProps> = ({ profiles, searchQuery }) => {
         </form>
 
         {/* Stats */}
-        <p class="text-tribal-dark/60 text-sm mb-6">
-          <span class="font-semibold text-tribal-dark">{profiles.length}</span> archived profiles
+        <p class="text-earth-stone text-sm mb-6">
+          <span class="font-semibold text-forest-moss">{profiles.length}</span> archived profiles
         </p>
 
         {/* Profile Grid */}
@@ -71,15 +71,15 @@ export const Archive: FC<ArchiveProps> = ({ profiles, searchQuery }) => {
           </div>
         ) : (
           <div class="text-center py-16">
-            <div class="w-20 h-20 mx-auto mb-4 bg-tribal-sand rounded-full flex items-center justify-center">
-              <svg class="w-10 h-10 text-tribal-dark/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+            <div class="w-20 h-20 mx-auto mb-4 bg-forest-fern/20 rounded-full flex items-center justify-center">
+              <svg class="w-10 h-10 text-forest-sage/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
               </svg>
             </div>
-            <h3 class="font-display text-2xl font-bold text-tribal-dark mb-2">
+            <h3 class="font-display text-2xl font-semibold text-forest-deep mb-2">
               Archive is empty
             </h3>
-            <p class="text-tribal-dark/60">
+            <p class="text-earth-stone">
               No archived profiles yet
             </p>
           </div>
